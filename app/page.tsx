@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -10,9 +11,11 @@ export default function Home() {
 
       {/* Login Button */}
       <div className="absolute top-6 right-10 z-20">
-        <button className="px-6 py-2 rounded-md bg-[#4C1D95] text-white font-semibold shadow-md">
-          Login
-        </button>
+        <Link href="/login">
+          <button className="px-6 py-2 rounded-md bg-[#4C1D95] text-white font-semibold shadow-md">
+            Login
+          </button>
+        </Link>
       </div>
 
       {/* Value Proposition */}

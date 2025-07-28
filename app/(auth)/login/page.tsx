@@ -69,7 +69,7 @@ const LoginPage = () => {
 
   const onSubmit = async (data: LoginFormData) => {
     console.log(data);
-    router.push("/change-password");
+    router.push("/dashboard");
     dispatch(
       setUser({
         email: form.getValues("email"),
