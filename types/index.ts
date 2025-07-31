@@ -2,6 +2,7 @@
 import { LoginFormSchema } from "@/app/(auth)/login/validations";
 // import { ResetPasswordFormSchema } from "@/app/(auth)/reset-password/validations";
 import { ChangePasswordFormSchema } from "@/app/(auth)/change-password/validations";
+import { ForgotPasswordFormSchema } from "@/app/(auth)/forgot-password/validations";
 import { store } from "@/store";
 import * as z from "zod";
 
@@ -17,7 +18,7 @@ const UserSchema = z.object({
 export type User = z.infer<typeof UserSchema>;
 export type LoginFormData = z.infer<typeof LoginFormSchema>;
 export type ChangePasswordFormData = z.infer<typeof ChangePasswordFormSchema>;
-// export type ForgotPasswordFormData = z.infer<typeof ForgotPasswordFormSchema>;
+export type ForgotPasswordFormData = z.infer<typeof ForgotPasswordFormSchema>;
 // export type ResetPasswordFormData = z.infer<typeof ResetPasswordFormSchema>;
 // export type SignUpFormData = z.infer<typeof SignUpFormSchema>;
 

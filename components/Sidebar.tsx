@@ -3,11 +3,18 @@
 import { sidebarNavigation } from "@/constants/navigation";
 import { useAppDispatch } from "@/store/hooks";
 import { logoutUser } from "@/store/slice/userService/userService";
-import { ChevronDown, ChevronsLeft, ChevronsRight, X } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronsLeft,
+  ChevronsRight,
+  SettingsIcon,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { BiSupport } from "react-icons/bi";
+import { FiLogOut } from "react-icons/fi";
+import { SettingsModal } from "./SettingsModal";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -26,7 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
 
   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [openPopover, setOpenPopover] = useState(false);
+  const [open, setOpen] = useState(false);
 
   // Detect mobile mode
   useEffect(() => {
@@ -71,7 +78,6 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
-    setOpenPopover(false);
     router.push("/login");
   };
 
@@ -137,71 +143,47 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
           )}
         </div>
 
-        {/* Navigation */}
-        <nav className="flex-1 py-4 px-4">
-          <ul className="space-y-1">
-            {sidebarNavigation.map((link) => (
-              <SidebarLinks
-                key={link.path}
-                link={link}
-                sidebarExpanded={sidebarExpanded || isMobile}
-                onClick={() => isMobile && setSidebarOpen(false)}
-              />
-            ))}
-          </ul>
-        </nav>
-
-        {/* Bottom Section */}
-        <div className="px-4 space-y-4 mb-6">
-          <Link
-            href="/support"
-            className="flex items-center space-x-3 text-primary"
-          >
-            <BiSupport className="text-xl" />
-            {sidebarExpanded && <span>Help & Support</span>}
-          </Link>
-
-          {/* <Popover open={openPopover} onOpenChange={setOpenPopover}>
-            <PopoverTrigger className="bg-secondary p-3 w-full rounded flex items-center justify-between text-white">
-              <div className="flex items-center gap-2">
-                {profilePicture ? (
-                  <Image
-                    src={profilePicture}
-                    alt="profile"
-                    width={32}
-                    height={32}
-                    className="rounded-full object-cover"
+        <div className="flex flex-col h-full overflow-y-auto duration-300 ease-linear px-4">
+          <div className="flex-grow overflow-y-auto">
+            {/* Navigation */}
+            <nav className="py-4">
+              <ul className="space-y-1">
+                {sidebarNavigation.map((link) => (
+                  <SidebarLinks
+                    key={link.path}
+                    link={link}
+                    sidebarExpanded={sidebarExpanded || isMobile}
+                    onClick={() => isMobile && setSidebarOpen(false)}
                   />
-                ) : (
-                  <FaUserCircle className="text-primary w-8 h-8" />
-                )}
-                {sidebarExpanded && (
-                  <span className="capitalize">{firstName?.toLowerCase()}</span>
-                )}
-              </div>
-              {sidebarExpanded && <ChevronDown />}
-            </PopoverTrigger>
+                ))}
+              </ul>
+            </nav>
+          </div>
 
-            <PopoverContent className="bg-white w-60 border-none p-4 space-y-2 text-gray-700">
-              <Link
-                href="/settings/profile-information"
-                onClick={() => setOpenPopover(false)}
-                className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded"
-              >
-                <SettingsSVG className="w-5 h-5" />
-                <span>Settings</span>
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded w-full"
-              >
-                <FiLogOut className="w-5 h-5 transform rotate-180" />
-                <span>Logout</span>
-              </button>
-            </PopoverContent>
-          </Popover> */}
+          {/* Logout Button - Always at Bottom */}
+          {/* Bottom Section */}
+          <div className="px-4 space-y-4 text-lg mb-28">
+            <div
+              className="cursor-pointer flex space-x-2"
+              onClick={() => setOpen(true)}
+            >
+              <SettingsIcon className="w-6 h-6" />
+              <span>Settings</span>
+            </div>
+            <Link
+              href={"/login"}
+              onClick={handleLogout}
+              className="flex space-x-4 text-white cursor-pointer transition-colors"
+            >
+              <div className="rotate-180">
+                <FiLogOut className="w-6 h-6" />
+              </div>
+              <span>Logout</span>
+            </Link>
+          </div>
         </div>
       </aside>
+      <SettingsModal open={open} onClose={() => setOpen(false)} />
     </>
   );
 };
