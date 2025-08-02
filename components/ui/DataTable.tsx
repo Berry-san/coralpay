@@ -14,16 +14,6 @@ import {
 } from "@tanstack/react-table";
 import * as React from "react";
 
-import { ChevronDown } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -123,7 +113,7 @@ export function DataTable<TData extends Record<string, any>, TValue>({
   return (
     <div className="w-full">
       <div className="flex items-center justify-between py-4">
-        <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-2">
+        {/* <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">
@@ -157,14 +147,17 @@ export function DataTable<TData extends Record<string, any>, TValue>({
             />
             {extraElement}
           </div>
-        </div>
+        </div> */}
       </div>
 
-      <div className="overflow-auto">
+      <div className="overflow-auto rounded-xl border border-[#F9F9F9]">
         <Table>
-          <TableHeader className="sticky top-0 bg-white z-10">
+          <TableHeader className="sticky top-0 bg-[#FCFDFD] z-10">
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id} className="text-[#334D6E]">
+              <TableRow
+                key={headerGroup.id}
+                className="text-[#00328B] font-bold"
+              >
                 {headerGroup.headers.map((header) => (
                   <TableHead key={header.id}>
                     {header.isPlaceholder
@@ -181,11 +174,14 @@ export function DataTable<TData extends Record<string, any>, TValue>({
 
           <TableBody>
             {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row) => (
+              table.getRowModel().rows.map((row, index) => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className="h-[56px] text-tableGray"
+                  // className="h-[56px] text-tableGray"
+                  className={`h-[56px] ${
+                    index % 2 === 0 ? "bg-[#FAFCFF]" : "bg-[#FFFFFF]"
+                  }`}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

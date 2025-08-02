@@ -1,7 +1,10 @@
 "use client";
 
-import { sidebarNavigation } from "@/constants/navigation";
-import { useAppDispatch } from "@/store/hooks";
+import {
+  adminSidebarNavigation,
+  userSidebarNavigation,
+} from "@/constants/navigation";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { logoutUser } from "@/store/slice/userService/userService";
 import {
   ChevronDown,
@@ -25,6 +28,8 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
   //   const { profilePicture, firstName, userRole } = useAppSelector(
   //     (state) => state.userService.user
   //   );
+  const user = useAppSelector((state) => state.userService.user);
+
   const dispatch = useAppDispatch();
   const router = useRouter();
   const pathname = usePathname();
@@ -148,14 +153,25 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
             {/* Navigation */}
             <nav className="py-4">
               <ul className="space-y-1">
-                {sidebarNavigation.map((link) => (
-                  <SidebarLinks
-                    key={link.path}
-                    link={link}
-                    sidebarExpanded={sidebarExpanded || isMobile}
-                    onClick={() => isMobile && setSidebarOpen(false)}
-                  />
-                ))}
+                {user?.email === "admin@coralpay.com"
+                  ? adminSidebarNavigation.map((link, index) => (
+                      <SidebarLinks
+                        // key={link.path}
+                        key={index}
+                        link={link}
+                        sidebarExpanded={sidebarExpanded || isMobile}
+                        onClick={() => isMobile && setSidebarOpen(false)}
+                      />
+                    ))
+                  : userSidebarNavigation.map((link, index) => (
+                      <SidebarLinks
+                        // key={link.path}
+                        key={index}
+                        link={link}
+                        sidebarExpanded={sidebarExpanded || isMobile}
+                        onClick={() => isMobile && setSidebarOpen(false)}
+                      />
+                    ))}
               </ul>
             </nav>
           </div>

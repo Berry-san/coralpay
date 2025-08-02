@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${mulish.variable} antialiased font-mulish text-text-primary bg-[#FDFDFE]`}
+        className={`${mulish.variable} antialiased font-mulish text-text-primary bg-[#FFFFFF]`}
       >
         <Providers>{children}</Providers>
       </body>

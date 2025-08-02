@@ -4,8 +4,8 @@ import { LuCircleUserRound } from "react-icons/lu";
 import { PiEqualizerBold, PiShieldCheckBold } from "react-icons/pi";
 
 import { ChangePasswordForm } from "./ChangePasswordForm";
-import { ProfileForm } from "./ProfileForm";
 import { SessionManager } from "./SessionManager";
+import SettingsAccordion from "./SettingsAccordion";
 
 export function SettingsModal({
   open,
@@ -21,12 +21,12 @@ export function SettingsModal({
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogTitle></DialogTitle>
-      <DialogContent className=" p-0 w-full">
-        <div className="flex h-[500px] ">
+      <DialogContent className=" p-0 w-full rounded-md md:max-w-2xl">
+        <div className="flex h-[500px]">
           {/* Sidebar */}
-          <div className="w-1/3 bg-[#F6F3F8] p-5 space-y-4">
+          <div className="w-1/3 bg-[#F6F3F8] p-5 space-y-4 rounded-l-xl">
             <h2 className="text-lg font-semibold">Settings</h2>
-            <div className="space-y-2 text-sm">
+            <div className="space-y-2 text-base">
               <button
                 onClick={() => setActiveTab("profile")}
                 className={`flex w-full text-left px-2 py-1 rounded-md ${
@@ -35,7 +35,7 @@ export function SettingsModal({
                     : "hover:bg-white/40"
                 }`}
               >
-                <LuCircleUserRound size={20} />
+                <LuCircleUserRound size={24} />
                 <span className="ml-2"> Profile</span>
               </button>
               <button
@@ -46,7 +46,7 @@ export function SettingsModal({
                     : "hover:bg-white/40"
                 }`}
               >
-                <PiShieldCheckBold size={20} />
+                <PiShieldCheckBold size={24} />
                 <span className="ml-2"> Change Password</span>
               </button>
               <button
@@ -57,7 +57,7 @@ export function SettingsModal({
                     : "hover:bg-white/40"
                 }`}
               >
-                <PiEqualizerBold size={20} />
+                <PiEqualizerBold size={24} />
                 <span className="ml-2"> Session</span>
               </button>
             </div>
@@ -65,7 +65,8 @@ export function SettingsModal({
 
           {/* Content */}
           <div className="w-2/3 p-6 overflow-y-auto">
-            {activeTab === "profile" && <ProfileForm />}
+            {/* {activeTab === "profile" && <ProfileForm />} */}
+            {activeTab === "profile" && <SettingsAccordion />}
             {activeTab === "password" && <ChangePasswordForm />}
             {activeTab === "session" && <SessionManager />}
           </div>

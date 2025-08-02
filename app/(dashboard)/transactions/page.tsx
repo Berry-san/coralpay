@@ -161,6 +161,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import { DataTable } from "@/components/ui/DataTable";
 import {
   Dialog,
@@ -171,7 +172,17 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { downloadCSV, downloadPDF } from "@/lib/table-export-utils";
+import { cn } from "@/lib/utils";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@radix-ui/react-popover";
+import { format } from "date-fns";
+import { CalendarIcon, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { PiFadersHorizontal } from "react-icons/pi";
 import { financialTransactionColumns, ussdTransactionColumns } from "./columns";
 import { financialTransactions, ussdTransactions } from "./data";
 
@@ -181,7 +192,30 @@ export default function TransactionsPage() {
   const [endDate, setEndDate] = useState<Date | undefined>();
   const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
   const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [startOpen, setStartOpen] = useState(false);
+  const [endOpen, setEndOpen] = useState(false);
+
   console.log(startDate, endDate, selectedStatus, selectedType);
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredData = ussdTransactions.filter((item) => {
+    const matchesSearch =
+      item.id?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.merchantName?.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesStatus = selectedStatus
+      ? item.status === selectedStatus
+      : true;
+
+    const matchesType = selectedType ? item.ussd === selectedType : true;
+
+    const matchesDateRange =
+      (!startDate || new Date(item.date) >= startDate) &&
+      (!endDate || new Date(item.date) <= endDate);
+
+    return matchesSearch && matchesStatus && matchesType && matchesDateRange;
+  });
 
   const FilterButton = ({
     label,
@@ -207,11 +241,40 @@ export default function TransactionsPage() {
   const formatDate = (date?: Date) =>
     date ? date.toISOString().split("T")[0] : "";
 
+  const handleExportPDF = () => {
+    downloadPDF(filteredData);
+  };
+
+  const handleExportCSV = () => {
+    downloadCSV(filteredData);
+  };
+
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-semibold">Transactions</h1>
 
-      <Tabs defaultValue="ussd" className="space-y-4 bg-[#FAF8FB] rounded-lg">
+      <div className="flex justify-between items-center mb-4">
+        <div className="flex gap-2">
+          <Input
+            placeholder="Search transactions..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-[300px]"
+          />
+          <button className="bg-[#FAF8FB] text-black px-4 py-2 rounded-xl w-fit flex items-center gap-2">
+            <PiFadersHorizontal className="inline " />
+            Filter
+            <ChevronDown className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="flex gap-2">
+          <Button onClick={handleExportCSV}>Export CSV</Button>
+          <Button onClick={handleExportPDF}>Export PDF</Button>
+        </div>
+      </div>
+
+      <Tabs defaultValue="ussd" className="space-y-4 rounded-lg">
         <TabsList className="w-fit bg-[#f4f4f5]">
           <TabsTrigger
             value="ussd"
@@ -228,37 +291,87 @@ export default function TransactionsPage() {
         </TabsList>
 
         <Dialog open={open} onOpenChange={setOpen}>
-          <DialogTrigger asChild>
-            <Button variant="outline" className="ml-4">
-              Filter
-            </Button>
-          </DialogTrigger>
+          <DialogTrigger asChild></DialogTrigger>
           <DialogContent className="sm:max-w-sm">
             <DialogHeader>
               <DialogTitle>Filter</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium">Date Range</label>
-                <div className="flex gap-2">
-                  <Input
-                    type="date"
-                    value={formatDate(startDate)}
-                    onChange={(e) =>
-                      setStartDate(
-                        e.target.value ? new Date(e.target.value) : undefined
-                      )
-                    }
-                  />
-                  <Input
-                    type="date"
-                    value={formatDate(endDate)}
-                    onChange={(e) =>
-                      setEndDate(
-                        e.target.value ? new Date(e.target.value) : undefined
-                      )
-                    }
-                  />
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-2 w-full">
+                    {/* Start Date Picker */}
+                    <div>
+                      <label className="block text-sm font-medium mb-1">
+                        Start Date
+                      </label>
+                      <Popover open={startOpen} onOpenChange={setStartOpen}>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "w-full justify-start text-left font-normal",
+                              !startDate && "text-muted-foreground"
+                            )}
+                          >
+                            {startDate
+                              ? format(startDate, "PPP")
+                              : "Pick a start date"}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={startDate}
+                            onSelect={(date) => {
+                              setStartDate(date);
+                              setStartOpen(false); // Close popover
+                            }}
+                            captionLayout="dropdown"
+                            fromYear={1900}
+                            toYear={new Date().getFullYear()}
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+
+                    {/* End Date Picker */}
+                    <div>
+                      <label className="block text-sm font-medium mb-1">
+                        End Date
+                      </label>
+                      <Popover open={endOpen} onOpenChange={setEndOpen}>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "w-full justify-start text-left font-normal",
+                              !endDate && "text-muted-foreground"
+                            )}
+                          >
+                            {endDate
+                              ? format(endDate, "PPP")
+                              : "Pick an end date"}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={endDate}
+                            onSelect={(date) => {
+                              setEndDate(date);
+                              setEndOpen(false); // Close popover
+                            }}
+                            captionLayout="dropdown"
+                            fromYear={1900}
+                            toYear={new Date().getFullYear()}
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -312,7 +425,7 @@ export default function TransactionsPage() {
         <TabsContent value="ussd">
           <DataTable
             columns={ussdTransactionColumns}
-            data={ussdTransactions}
+            data={filteredData}
             searchableKeys={["id", "merchantName"]}
             searchPlaceholder="Search by ID, merchant name"
           />

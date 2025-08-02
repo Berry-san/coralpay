@@ -1,8 +1,8 @@
 import { Bell, Menu, Search } from "lucide-react";
 
 interface HeaderProps {
-  sidebarOpen: boolean;
-  setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  sidebarOpen?: boolean;
+  setSidebarOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
@@ -22,7 +22,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
             aria-controls="sidebar"
             onClick={(e) => {
               e.stopPropagation();
-              setSidebarOpen(!sidebarOpen);
+              // setSidebarOpen(!sidebarOpen);
             }}
             className="z-40 block p-1.5 lg:hidden"
           >

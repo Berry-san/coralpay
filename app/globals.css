@@ -14,6 +14,7 @@
   --color-borderColor: #909090
   --color-textColor: #656b76;
   --color-destructive: hsl(0, 100%, 50%);
+  --color-lineColor: #F9F9F9
 
   --var-text-primary: var(--color-text-primary);
   --var-secondary: var(--color-secondary);
@@ -22,6 +23,7 @@
   --var-borderColor: var(--color-borderColor);
   --var-textColor: var(--color-textColor);
   --var-primary: var(--color-primary);
+  --var-lineColor: var(--color-lineColor)
 }
 
 /* ----------------------------------------------

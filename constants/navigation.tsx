@@ -9,7 +9,7 @@ import {
   PiUserListBold,
 } from "react-icons/pi";
 
-export const sidebarNavigation = [
+export const adminSidebarNavigation = [
   {
     name: "Home",
     path: "/dashboard",
@@ -24,7 +24,7 @@ export const sidebarNavigation = [
       },
       {
         name: "Merchants",
-        path: "merchants",
+        path: "/merchants",
       },
     ],
     icon: <PiBriefcaseBold className="size-7" />,
@@ -35,11 +35,11 @@ export const sidebarNavigation = [
     children: [
       {
         name: "Users",
-        path: "admin/users",
+        path: "/users",
       },
       {
         name: "Roles",
-        path: "admin/roles",
+        path: "/roles",
       },
     ],
   },
@@ -50,8 +50,17 @@ export const sidebarNavigation = [
   },
   {
     name: "Services",
-    path: "/services",
     icon: <PiTreeStructureBold className="size-7" />,
+    children: [
+      {
+        name: "List of Services",
+        path: "/services",
+      },
+      {
+        name: "Pending Approvals",
+        path: "/pending-approvals",
+      },
+    ],
   },
 
   {
@@ -77,5 +86,56 @@ export const sidebarNavigation = [
     name: "Audit Log",
     path: "/audit-log",
     icon: <PiEqualizerBold className="size-7" />,
+  },
+];
+
+export const userSidebarNavigation = [
+  {
+    name: "Dashboard",
+    path: "/dashboard",
+    icon: <LuLayoutDashboard className="size-7" />,
+  },
+  {
+    name: "Users Management",
+    icon: <PiUserListBold className="size-7" />,
+    children: [
+      {
+        name: "Users",
+        path: "/users",
+      },
+      {
+        name: "Roles",
+        path: "/roles",
+      },
+    ],
+  },
+  {
+    name: "Transactions",
+    path: "/transactions",
+    icon: <PiReceiptBold className="size-7" />,
+  },
+  {
+    name: "Services",
+    icon: <PiTreeStructureBold className="size-7" />,
+    children: [
+      {
+        name: "All Services",
+        path: "/services",
+      },
+      {
+        name: "Build Service",
+        path: "/build-service",
+      },
+    ],
+  },
+  {
+    name: "Reports",
+    path: "/reports",
+    icon: <PiChartPieSliceBold className="size-7" />,
+  },
+  {
+    name: "Short Code Requests",
+    path: "/apply-code",
+    icon: <PiBinaryBold className="size-7" />,
   },
 ];
