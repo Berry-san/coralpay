@@ -3,7 +3,9 @@ import { useState } from "react";
 import { LuCircleUserRound } from "react-icons/lu";
 import { PiEqualizerBold, PiShieldCheckBold } from "react-icons/pi";
 
+import { useAppSelector } from "@/store/hooks";
 import { ChangePasswordForm } from "./ChangePasswordForm";
+import { ProfileForm } from "./ProfileForm";
 import { SessionManager } from "./SessionManager";
 import SettingsAccordion from "./SettingsAccordion";
 
@@ -14,6 +16,8 @@ export function SettingsModal({
   open: boolean;
   onClose: () => void;
 }) {
+  const user = useAppSelector((state) => state.userService.user);
+
   const [activeTab, setActiveTab] = useState<
     "profile" | "password" | "session"
   >("profile");
@@ -66,7 +70,12 @@ export function SettingsModal({
           {/* Content */}
           <div className="w-2/3 p-6 overflow-y-auto">
             {/* {activeTab === "profile" && <ProfileForm />} */}
-            {activeTab === "profile" && <SettingsAccordion />}
+            {activeTab === "profile" &&
+              (user?.email === "admin@coralpay.com" ? (
+                <ProfileForm />
+              ) : (
+                <SettingsAccordion />
+              ))}
             {activeTab === "password" && <ChangePasswordForm />}
             {activeTab === "session" && <SessionManager />}
           </div>
