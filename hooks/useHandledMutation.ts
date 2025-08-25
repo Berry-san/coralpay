@@ -4,7 +4,7 @@ import {
   ApiResponse,
   HandleApiError,
   HandleApiSuccess,
-} from "@/app/(auth)/apiService/apiResponseHandler";
+} from "@/app/apiService/apiResponseHandler";
 import type { QueryKey } from "@tanstack/react-query";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
