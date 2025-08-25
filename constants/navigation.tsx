@@ -124,7 +124,7 @@ export const userSidebarNavigation = [
       },
       {
         name: "Build Service",
-        path: "/build-service",
+        path: "/services/build-service",
       },
     ],
   },
