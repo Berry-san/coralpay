@@ -4,7 +4,7 @@ export interface AuditLogEntry {
   id: number;
   userName: string;
   role: Role;
-  timestamp: string; // ISO format
+  timestamp: string;
   action: string;
   description: string;
   ipAddress: string;

@@ -1,4 +1,3 @@
-// data.ts
 import { User } from "./columns";
 
 export const users: User[] = [
@@ -7,7 +6,7 @@ export const users: User[] = [
     fullName: "Nadine Schroeder",
     email: "Nadi@example.com",
     role: "Admin",
-    lastActive: "01/01/2025 10:00 am",
+    lastActive: "01/01/2025 ",
     status: "Pending",
   },
   {
@@ -15,7 +14,7 @@ export const users: User[] = [
     fullName: "Miranda Torp",
     email: "Adrie@example.com",
     role: "Member",
-    lastActive: "01/01/2025 10:00 am",
+    lastActive: "01/01/2025 ",
     status: "Pending",
   },
   {
@@ -23,7 +22,7 @@ export const users: User[] = [
     fullName: "Neil Swaniawski",
     email: "Mira@example.com",
     role: "Assistant Admin",
-    lastActive: "01/01/2025 10:00 am",
+    lastActive: "01/01/2025 ",
     status: "Active",
   },
   {
@@ -31,7 +30,7 @@ export const users: User[] = [
     fullName: "Chad Sauer",
     email: "Neil.S@example.com",
     role: "Member",
-    lastActive: "01/01/2025 10:00 am",
+    lastActive: "01/01/2025 ",
     status: "Pending",
   },
   {
@@ -39,7 +38,7 @@ export const users: User[] = [
     fullName: "Jacob West",
     email: "Jaco@example.com",
     role: "Member",
-    lastActive: "01/01/2025 10:00 am",
+    lastActive: "01/01/2025 ",
     status: "Inactive",
   },
   {
@@ -47,7 +46,7 @@ export const users: User[] = [
     fullName: "Adrienne Connelly",
     email: "Chad_S@example.com",
     role: "Super Admin",
-    lastActive: "01/01/2025 10:00 am",
+    lastActive: "01/01/2025 ",
     status: "Active",
   },
   {
@@ -55,7 +54,7 @@ export const users: User[] = [
     fullName: "Jacob West",
     email: "Jaco@example.com",
     role: "Member",
-    lastActive: "01/01/2025 10:00 am",
+    lastActive: "01/01/2025 ",
     status: "Inactive",
   },
   {
@@ -63,7 +62,7 @@ export const users: User[] = [
     fullName: "Jacob West",
     email: "Jaco@example.com",
     role: "Member",
-    lastActive: "01/01/2025 10:00 am",
+    lastActive: "01/01/2025 ",
     status: "Active",
   },
 ];

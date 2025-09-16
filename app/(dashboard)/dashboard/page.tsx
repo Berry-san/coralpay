@@ -17,7 +17,7 @@ export default function DashboardOverview() {
       icon: <UsersIcon className="w-5 h-5" />,
     },
     {
-      label: "Active Users",
+      label: "Active Merchants",
       value: 0,
       percentage: "0.00%",
       background: "bg-red-50",
@@ -25,7 +25,16 @@ export default function DashboardOverview() {
       icon: <UsersIcon className="w-5 h-5" />,
     },
     {
-      label: "Inactive Users",
+      label: "Inactive Merchants",
+      value: 0,
+      percentage: "0.00%",
+      background: "bg-purple-50",
+      iconColor: "text-purple-600",
+      icon: <UsersIcon className="w-5 h-5" />,
+    },
+
+    {
+      label: "Pending Requests",
       value: 0,
       percentage: "0.00%",
       background: "bg-purple-50",
@@ -37,7 +46,7 @@ export default function DashboardOverview() {
   return (
     <>
       <Header />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {metrics.map((metric, idx) => (
           <MetricCard
             key={idx}

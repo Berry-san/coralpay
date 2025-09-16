@@ -7,8 +7,8 @@ interface HeaderProps {
 
 const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
   return (
-    <div className="bg-white">
-      <div className="mx-auto max-w-screen-2xl px-4 py-4 md:px-8 2xl:px-14">
+    <div className="">
+      <div className="mx-auto max-w-screen-2xl pb-4">
         <h1 className="text-3xl font-bold">Hello, Sinzu Berry</h1>
         <div className="flex items-center justify-between mt-2">
           <p className="font-medium text-base">

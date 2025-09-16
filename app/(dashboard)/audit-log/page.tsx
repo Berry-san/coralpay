@@ -1,59 +1,65 @@
 "use client";
 
 import FilterModal from "@/components/FilterModal";
+import SearchInput from "@/components/SearchInput";
 import { DataTable } from "@/components/ui/DataTable";
-import { useState } from "react";
+import { applyReportFilters, ReportFilters } from "@/lib/filter";
+import { useMemo, useState } from "react";
 import { columns } from "./column";
-import { auditLogData, AuditLogEntry, Role } from "./data";
+import { auditLogData, AuditLogEntry } from "./data";
 
 const AuditLog = () => {
   const [showFilter, setShowFilter] = useState(false);
-  const [filteredData, setFilteredData] =
-    useState<AuditLogEntry[]>(auditLogData);
+  const [filters, setFilters] = useState<ReportFilters>({
+    reportType: "merchant",
+  });
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const handleApplyFilter = ({
-    startDate,
-    endDate,
-    role,
-  }: {
-    startDate?: string;
-    endDate?: string;
-    role?: Role;
-  }) => {
-    let result = [...auditLogData];
+  const searchableFields = ["userName", "ip"];
 
-    if (startDate) {
-      result = result.filter(
-        (entry) => new Date(entry.timestamp) >= new Date(startDate)
-      );
+  const rows = useMemo(() => {
+    const filteredByReport = applyReportFilters<AuditLogEntry>(
+      auditLogData,
+      filters
+    );
+
+    if (searchQuery.trim() === "") {
+      return filteredByReport;
     }
 
-    if (endDate) {
-      result = result.filter(
-        (entry) => new Date(entry.timestamp) <= new Date(endDate)
-      );
-    }
+    const lowerCaseQuery = searchQuery.toLowerCase();
+    return filteredByReport.filter((entry) =>
+      searchableFields.some((field) => {
+        const value = entry[field as keyof AuditLogEntry];
 
-    if (role) {
-      result = result.filter((entry) => entry.role === role);
-    }
-
-    setFilteredData(result);
-  };
+        return (
+          typeof value === "string" &&
+          value.toLowerCase().includes(lowerCaseQuery)
+        );
+      })
+    );
+  }, [auditLogData, filters, searchQuery]);
 
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-semibold">Audit Log</h1>
-        <FilterModal
-          isOpen={showFilter}
-          onClose={() => setShowFilter(false)}
-          onApply={handleApplyFilter}
-        />
+        <div className="flex gap-4 items-center">
+          <SearchInput
+            onSearch={setSearchQuery}
+            placeholder="Search audit logs..."
+          />
+          <FilterModal
+            reportType="audit"
+            isOpen={showFilter}
+            setIsOpen={setShowFilter}
+            initialFilters={filters}
+            onApply={(next) => setFilters(next)}
+          />
+        </div>
       </div>
-
       <div className="">
-        <DataTable columns={columns} data={filteredData} />
+        <DataTable columns={columns} data={rows} />
       </div>
     </div>
   );
