@@ -40,7 +40,7 @@ const ReportsPage = () => {
   //   };
 
   return (
-    <div className="p-6">
+    <div className="">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-semibold">Reports</h1>
         {/* <FilterModal

@@ -112,8 +112,8 @@ export function DataTable<TData extends Record<string, any>, TValue>({
 
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between py-4">
-        {/* <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-2">
+      {/* <div className="flex items-center justify-between py-4">
+        <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">
@@ -147,8 +147,8 @@ export function DataTable<TData extends Record<string, any>, TValue>({
             />
             {extraElement}
           </div>
-        </div> */}
-      </div>
+        </div>
+      </div> */}
 
       <div className="overflow-auto rounded-xl border border-[#F9F9F9]">
         <Table>
@@ -207,7 +207,7 @@ export function DataTable<TData extends Record<string, any>, TValue>({
         </Table>
       </div>
 
-      <div className="flex items-center justify-between space-x-2 py-4">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between space-x-2 py-4">
         <div className="flex items-center justify-center gap-2">
           <div className="text-muted-foreground text-sm">
             Showing {start}–{end} of {total}

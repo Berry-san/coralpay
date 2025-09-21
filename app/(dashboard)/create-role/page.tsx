@@ -19,7 +19,7 @@ export default function CreateRolePage() {
   };
 
   return (
-    <div className="p-6 space-y-4">
+    <div className="space-y-4">
       <div className="flex items-center gap-3">
         <Button variant="ghost" onClick={() => router.back()}>
           &larr; Back

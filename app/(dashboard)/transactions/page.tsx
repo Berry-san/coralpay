@@ -114,11 +114,11 @@ export default function TransactionsPage() {
     downloadPDF(currentRows as Record<string, any>[]);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6">
       <h1 className="text-2xl font-semibold">Transactions</h1>
 
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
+        <div className="flex gap-2 flex-col sm:flex-row">
           <Input
             placeholder={
               tab === "ussd"

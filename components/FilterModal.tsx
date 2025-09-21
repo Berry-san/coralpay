@@ -362,7 +362,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
         </DialogTrigger>
       )}
 
-      <DialogContent className="w-full max-w-md bg-white">
+      <DialogContent className=" max-w-md bg-white">
         <DialogHeader>
           <DialogTitle className="text-lg font-semibold">Filter</DialogTitle>
           <DialogDescription>Set filter criteria.</DialogDescription>

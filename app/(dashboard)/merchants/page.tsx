@@ -68,7 +68,7 @@ export default function MerchantPage() {
   // };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-semibold">Merchants</h1>
         <div className="flex gap-4">

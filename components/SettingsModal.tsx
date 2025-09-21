@@ -25,7 +25,7 @@ export function SettingsModal({
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogTitle></DialogTitle>
-      <DialogContent className=" p-0 w-full rounded-md md:max-w-2xl">
+      <DialogContent className="p-0 rounded-md md:max-w-2xl">
         <div className="flex h-[500px]">
           {/* Sidebar */}
           <div className="w-1/3 bg-[#F6F3F8] p-5 space-y-4 rounded-l-xl">
@@ -68,7 +68,7 @@ export function SettingsModal({
           </div>
 
           {/* Content */}
-          <div className="w-2/3 p-6 overflow-y-auto">
+          <div className="w-2/3 overflow-y-auto p-6">
             {/* {activeTab === "profile" && <ProfileForm />} */}
             {activeTab === "profile" &&
               (user?.email === "admin@coralpay.com" ? (

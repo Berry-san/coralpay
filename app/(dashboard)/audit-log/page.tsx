@@ -41,8 +41,8 @@ const AuditLog = () => {
   }, [auditLogData, filters, searchQuery]);
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-4">
+    <div className="">
+      <div className="flex flex-col sm:flex-row space-y-4 justify-between items-start md:items-center mb-4">
         <h1 className="text-xl font-semibold">Audit Log</h1>
         <div className="flex gap-4 items-center">
           <SearchInput

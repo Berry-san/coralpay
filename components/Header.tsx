@@ -1,4 +1,4 @@
-import { Bell, Menu, Search } from "lucide-react";
+import { Bell, Search } from "lucide-react";
 
 interface HeaderProps {
   sidebarOpen?: boolean;
@@ -18,16 +18,6 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
             <Search className="w-5 h-5" />
             <Bell className="w-5 h-5" />
           </div>
-          <button
-            aria-controls="sidebar"
-            onClick={(e) => {
-              e.stopPropagation();
-              // setSidebarOpen(!sidebarOpen);
-            }}
-            className="z-40 block p-1.5 lg:hidden"
-          >
-            <Menu className="w-8 h-8" />
-          </button>
         </div>
       </div>
     </div>

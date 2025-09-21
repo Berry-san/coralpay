@@ -17,7 +17,7 @@ export default function RolesPage() {
   const router = useRouter();
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold">Roles</h2>

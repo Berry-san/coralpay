@@ -387,7 +387,7 @@ export const MerchantForm = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-6 lg:p-12 col-span-3 overflow-x-hidden overflow-y-scroll">
+        <div className="flex-1 lg:p-12 col-span-3 overflow-x-hidden overflow-y-scroll">
           <div className="max-w-2xl mx-auto">
             {/* Close Button - Desktop only */}
             <div className="hidden lg:flex justify-end mb-6">

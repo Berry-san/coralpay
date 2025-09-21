@@ -3,14 +3,9 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="relative h-screen bg-[#FDFDFD] overflow-hidden">
-      {/* Top Bar */}
-      <div className="absolute top-6 left-6 z-20">
+    <div className="h-screen bg-[#FDFDFD] overflow-y-hidden px-6">
+      <div className="fixed flex items-center justify-between w-full z-50 py-4 pr-8 md:pr-12">
         <Image src="/images/logo.png" alt="Logo" width={60} height={60} />
-      </div>
-
-      {/* Login Button */}
-      <div className="absolute top-6 right-10 z-20">
         <Link href="/login">
           <button className="px-6 py-2 rounded-md bg-[#4C1D95] text-white font-semibold shadow-md">
             Login
@@ -19,14 +14,15 @@ export default function Home() {
       </div>
 
       {/* Value Proposition */}
-      <div className="flex flex-col items-center justify-center text-center mt-28 z-20 relative px-6 ">
-        <p className="text-sm text-[#9A4EF1] font-semibold">CoralPay</p>
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mt-2">
-          Headline that highlights the <br /> Value Proposition
+      <div className="flex flex-col items-center justify-center text-center mt-28 z-20 relative">
+        <p className="text-lg text-[#4C0463] font-semibold">CoralPay</p>
+        <h1 className="text-4xl md:text-6xl font-extrabold text-gray-800 mt-2 max-w-6xl">
+          Your Self-Service Platform for Rapid USSD Application Development
         </h1>
-        <p className="text-gray-600 mt-4 max-w-2xl">
-          Describe exactly what your product or service does and how it makes
-          your customer’s lives better. Avoid using verbose words or phrases.
+        <p className="text-[#222222] text-xl font-semibold mt-4 max-w-4xl">
+          Fast, scalable, and secure self-service platform that simplifies USSD
+          application development by allowing users to quickly create menus and
+          integrate them with their business logic.
         </p>
       </div>
 
