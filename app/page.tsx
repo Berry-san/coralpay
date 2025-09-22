@@ -15,7 +15,7 @@ export default function Home() {
 
       {/* Value Proposition */}
       <div className="flex flex-col items-center justify-center text-center mt-28 z-20 relative">
-        <p className="text-lg text-[#4C0463] font-semibold">CoralPay</p>
+        <p className="text-2xl text-[#4C0463] font-semibold">CoralPay</p>
         <h1 className="text-4xl md:text-6xl font-extrabold text-gray-800 mt-2 max-w-6xl">
           Your Self-Service Platform for Rapid USSD Application Development
         </h1>
