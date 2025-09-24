@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-import { getCookie } from '@/app/utils/cookies';
-import { logoutUser } from '@/store/slice/userService/userService';
-import { useAppDispatch } from '@/store/hooks';
-import { useAppSelector } from '@/store/hooks';
-import { toast } from 'sonner';
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { logoutUser } from "@/store/slice/userService/userService";
+import { getCookie } from "@/utils/cookies";
+import { toast } from "sonner";
 
 export const useSessionCheck = () => {
   const router = useRouter();
@@ -13,14 +12,14 @@ export const useSessionCheck = () => {
   const { isAuthenticated } = useAppSelector((state) => state.userService.user);
 
   useEffect(() => {
-    const storedTtl = getCookie('ttl');
+    const storedTtl = getCookie("ttl");
 
     if (!storedTtl) return;
 
     if (!isAuthenticated) {
-      toast.warning('Session expired. Please log in.');
-      console.log('supposed to logout');
-      router.push('/login');
+      toast.warning("Session expired. Please log in.");
+      console.log("supposed to logout");
+      router.push("/login");
       return;
     }
 
@@ -29,16 +28,16 @@ export const useSessionCheck = () => {
     const remainingTime = ttlDate.getTime() - now.getTime();
 
     if (remainingTime <= 0) {
-      toast.warning('Session expired. Please log in.');
+      toast.warning("Session expired. Please log in.");
       dispatch(logoutUser());
-      router.push('/login');
+      router.push("/login");
       return;
     }
 
     const timeoutId = setTimeout(() => {
       dispatch(logoutUser());
-      toast.warning('Session expired. Please log in.');
-      router.push('/login');
+      toast.warning("Session expired. Please log in.");
+      router.push("/login");
     }, remainingTime);
 
     return () => clearTimeout(timeoutId);
@@ -46,7 +45,7 @@ export const useSessionCheck = () => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      router.push('/login');
+      router.push("/login");
       return;
     }
   }, [isAuthenticated, router]);
