@@ -169,9 +169,8 @@ const Sidebar: React.FC<SidebarProps> = ({
         ref={sidebar}
         className={`${baseAside} ${mobileState} ${desktopState}`}
       >
-        {/* Header (INSIDE the aside only) */}
         <div className="relative flex items-center justify-between p-4 pr-10">
-          <Link href="/overview" className="flex items-center gap-2 px-4">
+          <Link href="/dashboard" className="flex items-center gap-2 px-4">
             <div className="border border-white h-10 w-10 rounded-full bg-black" />
             {(sidebarExpanded || isMobile) && (
               <p className="text-white text-lg font-semibold">Ada</p>
