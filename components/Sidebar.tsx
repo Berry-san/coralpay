@@ -539,7 +539,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               ))}
             </ul>
           </nav>
-          <div className="mt-auto pt-4 pb-6 px-4 space-y-4 text-base">
+          <div className="mt-auto pt-4 pb-6 px-4 space-y-4 text-sm">
             <button
               type="button"
               className="cursor-pointer flex items-center space-x-4"
@@ -593,7 +593,7 @@ const SidebarLinks: React.FC<SidebarLinksProps> = ({
     <li>
       <div
         onClick={() => (hasChildren ? onParentClick() : undefined)}
-        className={`flex items-center justify-between text-base cursor-pointer px-4 py-2 shrink-0 rounded-md transition-colors ${
+        className={`flex items-center justify-between text-sm cursor-pointer px-4 py-2 shrink-0 rounded-md transition-colors ${
           isActive
             ? "bg-white text-primary font-semibold"
             : "hover:bg-white hover:text-primary text-white"
