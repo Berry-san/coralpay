@@ -68,7 +68,7 @@ export function SettingsModal({
           </div>
 
           {/* Content */}
-          <div className="w-2/3 overflow-y-auto p-6">
+          <div className="w-2/3 overflow-y-auto p-10">
             {/* {activeTab === "profile" && <ProfileForm />} */}
             {activeTab === "profile" &&
               (user?.email === "admin@coralpay.com" ? (
