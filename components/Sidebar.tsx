@@ -221,7 +221,7 @@
 //                 className="cursor-pointer flex items-center space-x-4"
 //                 onClick={() => setOpen(true)}
 //               >
-//                 <SettingsIcon className="size-7" />
+//                 <SettingsIcon className="size-6" />
 //                 {(sidebarExpanded || isMobile) && <span>Settings</span>}
 //               </button>
 
@@ -231,7 +231,7 @@
 //                 className="flex items-center space-x-4 text-white cursor-pointer transition-colors"
 //               >
 //                 <div className="rotate-180">
-//                   <FiLogOut className="size-7" />
+//                   <FiLogOut className="size-6" />
 //                 </div>
 //                 {(sidebarExpanded || isMobile) && <span>Logout</span>}
 //               </button>
@@ -545,7 +545,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               className="cursor-pointer flex items-center space-x-4"
               onClick={() => setOpen(true)}
             >
-              <SettingsIcon className="size-7" />
+              <SettingsIcon className="size-6" />
               {(sidebarExpanded || isMobile) && <span>Settings</span>}
             </button>
 
@@ -555,7 +555,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               className="flex items-center space-x-4 text-white cursor-pointer transition-colors"
             >
               <div className="rotate-180">
-                <FiLogOut className="size-7" />
+                <FiLogOut className="size-6" />
               </div>
               {(sidebarExpanded || isMobile) && <span>Logout</span>}
             </button>

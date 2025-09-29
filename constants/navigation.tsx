@@ -13,7 +13,7 @@ export const adminSidebarNavigation = [
   {
     name: "Home",
     path: "/dashboard",
-    icon: <LuLayoutDashboard className="size-7" />,
+    icon: <LuLayoutDashboard className="size-6" />,
   },
   {
     name: "Merchant Onboarding",
@@ -27,11 +27,11 @@ export const adminSidebarNavigation = [
         path: "/merchants",
       },
     ],
-    icon: <PiBriefcaseBold className="size-7" />,
+    icon: <PiBriefcaseBold className="size-6" />,
   },
   {
     name: "Admin Setup",
-    icon: <PiUserListBold className="size-7" />,
+    icon: <PiUserListBold className="size-6" />,
     children: [
       {
         name: "Users",
@@ -46,11 +46,11 @@ export const adminSidebarNavigation = [
   {
     name: "Transactions",
     path: "/transactions",
-    icon: <PiReceiptBold className="size-7" />,
+    icon: <PiReceiptBold className="size-6" />,
   },
   {
     name: "Services",
-    icon: <PiTreeStructureBold className="size-7" />,
+    icon: <PiTreeStructureBold className="size-6" />,
     children: [
       {
         name: "List of Services",
@@ -66,11 +66,11 @@ export const adminSidebarNavigation = [
   {
     name: "Reports",
     path: "/reports",
-    icon: <PiChartPieSliceBold className="size-7" />,
+    icon: <PiChartPieSliceBold className="size-6" />,
   },
   {
     name: "Short Code",
-    icon: <PiBinaryBold className="size-7" />,
+    icon: <PiBinaryBold className="size-6" />,
     children: [
       {
         name: "Configured Short Codes",
@@ -85,7 +85,7 @@ export const adminSidebarNavigation = [
   {
     name: "Audit Log",
     path: "/audit-log",
-    icon: <PiEqualizerBold className="size-7" />,
+    icon: <PiEqualizerBold className="size-6" />,
   },
 ];
 
@@ -93,11 +93,11 @@ export const userSidebarNavigation = [
   {
     name: "Dashboard",
     path: "/dashboard",
-    icon: <LuLayoutDashboard className="size-7" />,
+    icon: <LuLayoutDashboard className="size-6" />,
   },
   {
     name: "Users Management",
-    icon: <PiUserListBold className="size-7" />,
+    icon: <PiUserListBold className="size-6" />,
     children: [
       {
         name: "Users",
@@ -112,11 +112,11 @@ export const userSidebarNavigation = [
   {
     name: "Transactions",
     path: "/transactions",
-    icon: <PiReceiptBold className="size-7" />,
+    icon: <PiReceiptBold className="size-6" />,
   },
   {
     name: "Services",
-    icon: <PiTreeStructureBold className="size-7" />,
+    icon: <PiTreeStructureBold className="size-6" />,
     children: [
       {
         name: "All Services",
@@ -131,11 +131,11 @@ export const userSidebarNavigation = [
   {
     name: "Reports",
     path: "/reports",
-    icon: <PiChartPieSliceBold className="size-7" />,
+    icon: <PiChartPieSliceBold className="size-6" />,
   },
   {
     name: "Short Code Requests",
     path: "/apply-code",
-    icon: <PiBinaryBold className="size-7" />,
+    icon: <PiBinaryBold className="size-6" />,
   },
 ];

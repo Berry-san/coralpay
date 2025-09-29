@@ -59,7 +59,7 @@ export default function UsersPage() {
         </div>
         <Button
           onClick={() => setInviteModalOpen(true)}
-          className="bg-purple-800 text-white hover:bg-purple-900"
+          className="bg-primary text-white "
         >
           Invite User
         </Button>

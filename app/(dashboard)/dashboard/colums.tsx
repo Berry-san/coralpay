@@ -1,5 +1,6 @@
 "use client";
 
+import PenSquareIcon from "@/components/svgs/PencilComponent";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -8,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ColumnDef } from "@tanstack/react-table";
-import { Check, Pencil, X } from "lucide-react";
+import { Check, X } from "lucide-react";
 
 // ---------------- Types ----------------
 export type Availability = "Available" | "Not Available";
@@ -100,27 +101,23 @@ export function makeColumns(
         const r = row.original;
         const disabled = r.status === "Approved" || r.editable === false;
 
-        if (disabled) {
-          return (
-            <span
-              className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 text-gray-300 opacity-60 cursor-not-allowed"
-              aria-disabled
-              title="Approved"
-            >
-              <Pencil className="h-4 w-4" />
-            </span>
-          );
-        }
+        // if (disabled) {
+        //   return (
+        //     <span
+        //       className="text-gray-300 opacity-60 cursor-not-allowed"
+        //       aria-disabled
+        //       title="Approved"
+        //     >
+        //       <PenSquareIcon className="size-5 text-gray-700" />
+        //     </span>
+        //   );
+        // }
 
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                variant="outline"
-                className="h-9 w-9 p-0 rounded-lg border-gray-200"
-                aria-label={`Actions for ${r.id}`}
-              >
-                <Pencil className="h-4 w-4 text-gray-700" />
+              <Button variant="unstyled" aria-label={`Actions for ${r.id}`}>
+                <PenSquareIcon className="size-5 text-text-primary" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-40">
