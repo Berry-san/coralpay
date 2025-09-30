@@ -386,17 +386,6 @@ export function DataTable<TData extends Record<string, any>, TValue>({
   const selectableColumn: ColumnDef<TData, unknown> | null = enableRowSelection
     ? {
         id: "__select",
-        // header: ({ table }) => (
-        //   <SelectionCheckbox
-        //     aria-label="Select page rows"
-        //     checked={table.getIsAllPageRowsSelected()}
-        //     indeterminate={
-        //       table.getIsSomePageRowsSelected() &&
-        //       !table.getIsAllPageRowsSelected()
-        //     }
-        //     onCheckedChange={(next) => table.toggleAllPageRowsSelected(next)}
-        //   />
-        // ),
         header: ({ table }) => {
           const allSelected = table.getIsAllPageRowsSelected();
           const someSelected =
