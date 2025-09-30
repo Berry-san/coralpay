@@ -76,70 +76,39 @@
 
 "use client";
 
-import { ApproveDialog } from "@/components/ApproveDialog";
-import { DeclineDialog } from "@/components/DeclineDialog";
-import { ResultDialog } from "@/components/ResultDialog";
-import { ShortCodeCard } from "@/components/ShortCodeCard";
-import { useState } from "react";
-
-interface MerchantRequest {
-  id: string;
-  merchant: string;
-  status: "Available" | "Not Available";
-  type: "Dedicated" | "Shared";
-}
-
-const initialRequests: MerchantRequest[] = [
-  {
-    id: "1",
-    merchant: "Merchant A",
-    status: "Not Available",
-    type: "Dedicated",
-  },
-  { id: "2", merchant: "Merchant B", status: "Available", type: "Shared" },
-  {
-    id: "3",
-    merchant: "Merchant C",
-    status: "Not Available",
-    type: "Dedicated",
-  },
-  { id: "4", merchant: "Merchant D", status: "Available", type: "Dedicated" },
-  { id: "5", merchant: "Merchant E", status: "Not Available", type: "Shared" },
-  { id: "6", merchant: "Merchant F", status: "Available", type: "Dedicated" },
-];
+import { DataTable } from "@/components/ui/DataTable";
+import React, { useState } from "react";
+import { toast } from "sonner";
+import { ShortCodeRequest, makeColumns } from "./columns";
+import { requestData } from "./data";
 
 export default function ShortCodeRequestsPage() {
-  const [requests, setRequests] = useState<MerchantRequest[]>(initialRequests);
-  const [selectedRequest, setSelectedRequest] =
-    useState<MerchantRequest | null>(null);
-  const [showApprove, setShowApprove] = useState(false);
-  const [showDecline, setShowDecline] = useState(false);
-  const [resultMessage, setResultMessage] = useState("");
+  const [data, setData] = useState<ShortCodeRequest[]>(requestData);
 
-  const handleApprove = (request: MerchantRequest) => {
-    setSelectedRequest(request);
-    setShowApprove(true);
-  };
+  const handleAction = React.useCallback(
+    (row: ShortCodeRequest, action: "accept" | "reject") => {
+      setData((prev) =>
+        prev.map((r) =>
+          r.id === row.id
+            ? {
+                ...r,
+                status: action === "accept" ? "Approved" : "Declined",
+                editable: action === "accept" ? false : r.editable,
+              }
+            : r
+        )
+      );
+      toast.success(
+        `${action === "accept" ? "Accepted" : "Rejected"} request ${row.id}`
+      );
+    },
+    []
+  );
 
-  const handleDecline = (request: MerchantRequest) => {
-    setSelectedRequest(request);
-    setShowDecline(true);
-  };
-
-  const confirmApproval = () => {
-    if (!selectedRequest) return;
-    setRequests((prev) => prev.filter((req) => req.id !== selectedRequest.id));
-    setShowApprove(false);
-    setResultMessage("Request Approved Successfully");
-  };
-
-  const confirmDecline = (reason: string) => {
-    if (!selectedRequest) return;
-    console.log("Decline reason:", reason);
-    setRequests((prev) => prev.filter((req) => req.id !== selectedRequest.id));
-    setShowDecline(false);
-    setResultMessage("Request Declined Successfully");
-  };
+  const columns = React.useMemo(
+    () => makeColumns(handleAction),
+    [handleAction]
+  );
 
   return (
     <div className="space-y-6">
@@ -152,40 +121,9 @@ export default function ShortCodeRequestsPage() {
           with a reason.
         </p>
       </header>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-        {requests.map((req) => (
-          <ShortCodeCard
-            key={req.id}
-            merchant={req.merchant}
-            status={req.status}
-            type={req.type}
-            onApprove={() => handleApprove(req)}
-            onDecline={() => handleDecline(req)}
-          />
-        ))}
+      <div className="[&>div>table>tbody>tr:nth-child(odd)]:bg-[#FBFCFF]">
+        <DataTable columns={columns} data={data} />
       </div>
-
-      {/* Approve Confirmation Dialog */}
-      <ApproveDialog
-        open={showApprove}
-        onClose={() => setShowApprove(false)}
-        onConfirm={confirmApproval}
-      />
-
-      {/* Decline Reason Dialog */}
-      <DeclineDialog
-        open={showDecline}
-        onClose={() => setShowDecline(false)}
-        onConfirm={confirmDecline}
-      />
-
-      {/* Final Result Dialog */}
-      <ResultDialog
-        open={!!resultMessage}
-        onClose={() => setResultMessage("")}
-        message={resultMessage}
-      />
     </div>
   );
 }

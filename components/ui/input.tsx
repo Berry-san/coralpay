@@ -54,7 +54,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               type={type === "password" ? (show ? "text" : "password") : type}
               placeholder=" "
               className={cn(
-                "flex relative peer h-12 w-full rounded-xl bg-transparent border px-3 text-sm placeholder:text-muted-foreground focus:outline-[#00328B] disabled:cursor-not-allowed disabled:opacity-50",
+                "flex relative peer h-12 w-full rounded-xl bg-transparent border border-[#909090] px-3 text-sm placeholder:text-muted-foreground focus:outline-[#00328B] disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-[#ececec] disabled:border-0",
                 leftIcon && "pl-8",
                 rightIcon && "pr-12",
                 className

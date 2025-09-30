@@ -11,7 +11,7 @@ import {
 
 export const adminSidebarNavigation = [
   {
-    name: "Home",
+    name: "Dashboard",
     path: "/dashboard",
     icon: <LuLayoutDashboard className="size-6" />,
   },

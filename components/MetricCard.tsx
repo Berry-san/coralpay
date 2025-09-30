@@ -23,7 +23,12 @@ export const MetricCard = ({
   return (
     <div className="rounded-lg bg-white p-4 shadow-sm">
       <div className="flex items-center gap-4">
-        <div className={cn("rounded-md p-2", background)}>
+        <div
+          className={cn(
+            "rounded-md h-14 w-14 grid place-items-center",
+            background
+          )}
+        >
           <div className={cn("w-5 h-5", iconColor)}>{icon}</div>
         </div>
         <div>

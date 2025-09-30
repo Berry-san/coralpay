@@ -1,5 +1,6 @@
 "use client";
 
+import PenSquareIcon from "@/components/svgs/PencilComponent";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
@@ -7,7 +8,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ColumnDef } from "@tanstack/react-table";
-import { Pencil } from "lucide-react";
 import { useState } from "react";
 
 interface Merchant {
@@ -75,8 +75,8 @@ export const columns: ColumnDef<Merchant>[] = [
       return (
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
-            <Button size="icon" variant="ghost">
-              <Pencil className="w-4 h-4" />
+            <Button variant="unstyled">
+              <PenSquareIcon className="size-5 text-[#00328B]" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-44 bg-white">

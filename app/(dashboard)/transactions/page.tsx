@@ -15,6 +15,11 @@ import {
   type ReportFilters,
 } from "@/lib/filter";
 
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { downloadCSV, downloadPDF } from "@/lib/table-export-utils";
 import { financialTransactionColumns, ussdTransactionColumns } from "./columns";
 import { financialTransactions, ussdTransactions } from "./data";
@@ -31,6 +36,7 @@ const createSearchPredicate = <T,>(fields: (keyof T)[], query: string) => {
 
 export default function TransactionsPage() {
   const [tab, setTab] = useState<"ussd" | "financial">("ussd");
+  const [open, setOpen] = useState(false);
 
   const [searchQueries, setSearchQueries] = useState<Record<string, string>>({
     ussd: "",
@@ -139,10 +145,29 @@ export default function TransactionsPage() {
           </button>
         </div>
 
-        <div className="flex gap-2">
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger asChild>
+            <Button className="px-8" onClick={() => setOpen(true)}>
+              Export
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-44 bg-white">
+            <div className="flex flex-col gap-2">
+              <Button onClick={handleExportCSV} variant={"ghost"}>
+                Export CSV
+              </Button>
+              <Button onClick={handleExportPDF} variant={"ghost"}>
+                Export PDF
+              </Button>
+            </div>
+          </PopoverContent>
+        </Popover>
+
+        {/* <div className="flex gap-2">
           <Button onClick={handleExportCSV}>Export CSV</Button>
           <Button onClick={handleExportPDF}>Export PDF</Button>
-        </div>
+        </div> */}
       </div>
 
       <Tabs

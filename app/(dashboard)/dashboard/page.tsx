@@ -5,10 +5,11 @@ import Header from "@/components/Header";
 import { MetricCard } from "@/components/MetricCard";
 import { DataTable } from "@/components/ui/DataTable";
 import { ReportFilters } from "@/lib/filter";
-import { UsersIcon } from "lucide-react";
+import { Bell } from "lucide-react";
 import React, { useState } from "react";
 import { DateRange } from "react-day-picker";
 import { toast } from "sonner";
+import UsersGroupIcon from "../../../components/svgs/UserGroupIcon";
 import { makeColumns, ShortCodeRequest } from "./colums";
 import { requestData } from "./data";
 
@@ -34,7 +35,7 @@ const metrics = [
     percentage: "0.00%",
     background: "bg-green-50",
     iconColor: "text-green-600",
-    icon: <UsersIcon className="w-5 h-5" />,
+    icon: <UsersGroupIcon className="w-5 h-5" />,
   },
   {
     label: "Active Merchants",
@@ -42,7 +43,7 @@ const metrics = [
     percentage: "0.00%",
     background: "bg-red-50",
     iconColor: "text-red-600",
-    icon: <UsersIcon className="w-5 h-5" />,
+    icon: <UsersGroupIcon className="w-5 h-5" />,
   },
   {
     label: "Inactive Merchants",
@@ -50,16 +51,7 @@ const metrics = [
     percentage: "0.00%",
     background: "bg-purple-50",
     iconColor: "text-purple-600",
-    icon: <UsersIcon className="w-5 h-5" />,
-  },
-
-  {
-    label: "Pending Requests",
-    value: 0,
-    percentage: "0.00%",
-    background: "bg-purple-50",
-    iconColor: "text-purple-600",
-    icon: <UsersIcon className="w-5 h-5" />,
+    icon: <UsersGroupIcon className="w-5 h-5" />,
   },
 ];
 export default function DashboardOverview() {
@@ -108,8 +100,22 @@ export default function DashboardOverview() {
 
   return (
     <>
-      <Header />
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+      <Header
+        children={
+          <>
+            <h1 className="text-3xl font-bold">Hello, Sinzu Berry</h1>
+            <div className="flex items-center justify-between mt-2">
+              <p className="font-medium text-base">
+                Welcome and Let’s do some work today!
+              </p>
+              <div className="md:flex items-center gap-2 hidden">
+                <Bell className="w-5 h-5" />
+              </div>
+            </div>
+          </>
+        }
+      />
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {metrics.map((metric, idx) => (
           <MetricCard
             key={idx}

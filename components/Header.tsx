@@ -1,25 +1,9 @@
-import { Bell, Search } from "lucide-react";
+import React from "react";
 
-interface HeaderProps {
-  sidebarOpen?: boolean;
-  setSidebarOpen?: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
+const Header = ({ children }: React.PropsWithChildren) => {
   return (
     <div className="">
-      <div className="mx-auto max-w-screen-2xl pb-4">
-        <h1 className="text-3xl font-bold">Hello, Sinzu Berry</h1>
-        <div className="flex items-center justify-between mt-2">
-          <p className="font-medium text-base">
-            Welcome and Let’s do some work today!
-          </p>
-          <div className="md:flex items-center gap-2 hidden">
-            <Search className="w-5 h-5" />
-            <Bell className="w-5 h-5" />
-          </div>
-        </div>
-      </div>
+      <div className="mx-auto max-w-screen-2xl pb-4">{children}</div>
     </div>
   );
 };

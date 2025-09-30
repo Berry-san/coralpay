@@ -150,7 +150,7 @@ export function DataTable<TData extends Record<string, any>, TValue>({
         </div>
       </div> */}
 
-      <div className="overflow-auto rounded-xl border border-[#F9F9F9]">
+      <div className="overflow-auto rounded-xl border border-[#F9F9F9] ">
         <Table>
           <TableHeader className="sticky top-0 bg-[#FCFDFD] z-10">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -180,7 +180,7 @@ export function DataTable<TData extends Record<string, any>, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                   // className="h-[56px] text-tableGray"
                   className={`h-[56px] ${
-                    index % 2 === 0 ? "bg-[#FAFCFF]" : "bg-[#FFFFFF]"
+                    index % 2 === 0 ? "bg-[#FFFFFF]" : "bg-[#FAFCFF]"
                   }`}
                 >
                   {row.getVisibleCells().map((cell) => (

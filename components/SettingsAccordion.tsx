@@ -49,7 +49,7 @@ export default function SettingsAccordion() {
               </Button>
             </div>
           </AccordionTrigger>
-          <AccordionContent className="">
+          <AccordionContent className="p-4">
             <div className="space-y-3 py-4">
               <Input
                 label="Merchant Name"

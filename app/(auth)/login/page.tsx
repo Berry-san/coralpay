@@ -136,7 +136,7 @@ const LoginPage = () => {
           <div className="flex items-center justify-end">
             <Link
               href="/forgot-password"
-              className="text-base text-primary justify-end
+              className="text-base text-primary justify-end font-semibold
               "
             >
               Forgot Password?
