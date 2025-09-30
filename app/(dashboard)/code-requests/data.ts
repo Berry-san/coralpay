@@ -45,14 +45,14 @@ export const shortCodeData: ShortCode[] = [
     dateCreated: "01/01/2025 ",
   },
   {
-    id: "SCO-12342",
+    id: "SCO-12347",
     ussdCode: "*1234*1#",
     owner: "Jacob West",
     configured: false,
     dateCreated: "01/01/2025 ",
   },
   {
-    id: "SCO-12342",
+    id: "SCO-12348",
     ussdCode: "*5680*7#",
     owner: "Jacob West",
     configured: true,

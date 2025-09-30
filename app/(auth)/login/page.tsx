@@ -41,13 +41,6 @@ const LoginPage = () => {
 
     if (data) {
       const { accessToken, refreshToken, expiresIn } = data?.data.data || {};
-      // const {
-      //   balance,
-      //   firstName,
-      //   lastName,
-      //   businessEmailAddress,
-      //   businessPhoneNumber,
-      // } = data?.data.data?.UserBusinessDetail || {};
       dispatch(
         setUser({
           isAuthenticated: Boolean(accessToken),
