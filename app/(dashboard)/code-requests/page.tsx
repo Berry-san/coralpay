@@ -450,7 +450,7 @@ export default function ShortCodeRequestsPage() {
 
   return (
     <div className="space-y-6">
-      <header className="flex items-start justify-between">
+      <header className="flex flex-col lg:flex-row items-start justify-between">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">
             Short Code Requests
