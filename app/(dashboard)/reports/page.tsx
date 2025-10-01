@@ -1,12 +1,11 @@
 "use client";
 
-import { ChangePasswordForm } from "@/components/ChangePasswordForm";
 import Header from "@/components/Header";
-import { SessionManager } from "@/components/SessionManager";
 import { cn } from "@/lib/utils";
 import React, { useMemo, useState } from "react";
 import AuditLog from "../audit-log/page";
 import MerchantPage from "../merchants/page";
+import TransactionsPage from "../transactions/page";
 import UsersPage from "../users/page";
 
 type TabKey = "merchant" | "ussd" | "transaction" | "user" | "audit";
@@ -32,12 +31,12 @@ const ReportsPage = () => {
       {
         key: "ussd",
         label: "USSD Report",
-        content: <ChangePasswordForm />,
+        content: <TransactionsPage />,
       },
       {
         key: "transaction",
         label: "Transaction Report",
-        content: <SessionManager />,
+        content: <TransactionsPage />,
       },
       {
         key: "user",
